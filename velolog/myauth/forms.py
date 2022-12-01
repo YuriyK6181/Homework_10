@@ -16,6 +16,6 @@ class AuthenticationForm(AuthenticationFormGeneric):
         """
         super().__init__(*args, **kwargs)
 
-        for field in self.fields.items():
+        for name, field in self.fields.items():
             widget: Widget = field.widget
             widget.attrs["class"] = "form-control"

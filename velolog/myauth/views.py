@@ -13,7 +13,7 @@ from .forms import AuthenticationForm
 
 
 @login_required
-def top_secret_info_view():
+def top_secret_info_view(request):
     """
     Some docstring
     """

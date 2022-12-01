@@ -22,7 +22,6 @@ class BikesListTestCase(TestCase):
         """
         Some docstring
         """
-
         url = reverse("veloride:index")
         response = self.client.get(url)
 

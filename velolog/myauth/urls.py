@@ -4,7 +4,7 @@ Some docstring
 from django.urls import path
 from .views import MyProfileView, LoginView, LogoutView, top_secret_info_view
 
-APP_NAME = "myauth"
+app_name = "myauth"
 
 urlpatterns = [
     path("secret/", top_secret_info_view, name="hidden"),

@@ -16,7 +16,7 @@ from .views import (
     BikeRideDeleteView,
 )
 
-APP_NAME = "veloride"
+app_name = "veloride"
 
 urlpatterns = [
     path("", BikesListView.as_view(), name="index"),
