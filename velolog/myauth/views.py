@@ -5,15 +5,15 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView
-from .forms import AuthenticationForm
 from django.contrib.auth.views import (
     LoginView as LoginViewGeneric,
     LogoutView as LogoutViewGeneric,
 )
+from .forms import AuthenticationForm
 
 
 @login_required
-def top_secret_info_view(request):
+def top_secret_info_view():
     """
     Some docstring
     """
@@ -40,4 +40,3 @@ class LogoutView(LogoutViewGeneric):
     Some docstring
     """
     next_page = reverse_lazy("myauth:my")
-

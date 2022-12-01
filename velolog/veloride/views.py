@@ -1,12 +1,13 @@
-
+"""
+Some docstring
+"""
 from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, DetailView, DeleteView, CreateView, UpdateView
+from django.http import HttpResponseRedirect
 from .models import Bike, BikeRide
 from .forms import (BikeCreateForm, BikeUpdateForm,
                     BikeRideCreateForm, BikeRideUpdateForm,
                     )
-
-from django.http import HttpResponseRedirect
 
 
 class BikesListView(ListView):

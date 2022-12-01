@@ -1,8 +1,14 @@
+"""
+Some docstring
+"""
 from django.db import models
-from .common import calc_orig_price, date_to_str_dmy, calc_diff_dt_in_HM
+from .common import calc_orig_price, date_to_str_dmy, calc_diff_dt_in_hm
 
 
 class Organization(models.Model):
+    """
+    Some docstring
+    """
     name = models.CharField(max_length=255, null=False, verbose_name="Наименование")
     fullname = models.CharField(max_length=512, blank=True, null=True, verbose_name="Полное наименование")
     phone1 = models.CharField(max_length=20, blank=True, null=True, verbose_name="Контактный телефон")
@@ -14,40 +20,64 @@ class Organization(models.Model):
     archived = models.BooleanField(default=False, verbose_name="Архив")
 
     class Meta:
+        """
+        Some docstring
+        """
         verbose_name = 'Организация'
         verbose_name_plural = 'Организации'
+
+    def __str__(self):
+        """
+        Some docstring
+        """
+        return str(self.name)
+
+
+class BikeClass(models.Model):
+    """
+    Some docstring
+    """
+    name = models.CharField(max_length=128, null=False, blank=False, verbose_name='Наименование')
+    description = models.TextField(null=False, blank=True, verbose_name='Описание')
+    archived = models.BooleanField(default=False, verbose_name='Архив')
+
+    class Meta:
+        """
+        Some docstring
+        """
+        verbose_name = 'Класс велосипедов'
+        verbose_name_plural = 'Классы велосипедов'
 
     def __str__(self):
         return str(self.name)
 
 
-class BikeClass(models.Model):
-    name = models.CharField(max_length=128, null=False, blank=False, verbose_name='Наименование')
-    description = models.TextField(null=False, blank=True, verbose_name='Описание')
-    archived = models.BooleanField(default=False, verbose_name='Архив')
-
-    class Meta:
-        verbose_name = 'Класс велосипедов'
-        verbose_name_plural = 'Классы велосипедов'
-
-    def __str__(self):
-        return self.name
-
-
 class BikeType(models.Model):
+    """
+    Some docstring
+    """
     name = models.CharField(max_length=128, null=False, blank=False, verbose_name='Наименование')
     description = models.TextField(null=False, blank=True, verbose_name='Описание')
     archived = models.BooleanField(default=False, verbose_name='Архив')
 
     def __str__(self):
-        return self.name
+        """
+        Some docstring
+        """
+        return str(self.name)
 
     class Meta:
+        """
+        Some docstring
+        """
         verbose_name = 'Тип велосипеда'
         verbose_name_plural = 'Типы велосипедов'
 
 
 class Bike(models.Model):
+    """
+    Some docstring
+    """
     manufacturer = models.ForeignKey(Organization, on_delete=models.PROTECT, related_name='bike',
                                      verbose_name='Производитель')
     model_name = models.CharField(max_length=64, verbose_name='Модель')
@@ -65,6 +95,9 @@ class Bike(models.Model):
     archived = models.BooleanField(default=False, verbose_name='Архив')
 
     class Meta:
+        """
+        Some docstring
+        """
         verbose_name = 'Велосипед'
         verbose_name_plural = 'Велосипеды'
 
@@ -74,30 +107,45 @@ class Bike(models.Model):
                str(self.model_year)
 
     def calc_price_info(self):
+        """
+        Some docstring
+        """
         if self.price:
             if not self.discount:
                 self.discount = 0
             self.orig_price = calc_orig_price(self.price, self.discount)
 
     def save(self, *args, **kwargs):
+        """
+        Some docstring
+        """
         self.calc_price_info()
         super().save(*args, **kwargs)
 
 
 class BikeEventType(models.Model):
+    """
+    Some docstring
+    """
     name = models.CharField(max_length=64, null=False, verbose_name='Наименование')
     description = models.CharField(max_length=512, null=True, blank=True, verbose_name='Описание')
     archived = models.BooleanField(default=False, verbose_name='Архив')
 
     class Meta:
+        """
+        Some docstring
+        """
         verbose_name = 'Тип велозаезда'
         verbose_name_plural = 'Типы велозаездов'
 
     def __str__(self):
-        return self.name
+        return str(self.name)
 
 
 class BikeRide(models.Model):
+    """
+    Some docstring
+    """
     verbose_name = 'Велозаезд'
     name = models.CharField(max_length=256, null=False, verbose_name="Название")
     description = models.CharField(max_length=1024, blank=True, null=True, verbose_name="Описание")
@@ -146,6 +194,9 @@ class BikeRide(models.Model):
     admin_mark = models.CharField(max_length=20, null=True, blank=True, verbose_name="Метка админа")
 
     class Meta:
+        """
+        Some docstring
+        """
         verbose_name = 'Велозаезд'
         verbose_name_plural = 'Велозаезды'
 
@@ -153,8 +204,11 @@ class BikeRide(models.Model):
         return date_to_str_dmy(self.ride_date) + ' - "' + str(self.name) + '"'
 
     def calc_ride_time_info(self):
+        """
+        Some docstring
+        """
         if self.ride_start_dt and self.ride_finish_dt:
-            hm_dif = calc_diff_dt_in_HM(self.ride_start_dt, self.ride_finish_dt)
+            hm_dif = calc_diff_dt_in_hm(self.ride_start_dt, self.ride_finish_dt)
             self.ride_time_all_h = hm_dif.h
             self.ride_time_all_m = hm_dif.m
             self.ride_time_rtm = hm_dif.h * 60 + hm_dif.m
@@ -167,5 +221,8 @@ class BikeRide(models.Model):
             self.ride_relax = round((1 - tr / tm) * 100, 2)
 
     def save(self, *args, **kwargs):
+        """
+        Some docstring
+        """
         self.calc_ride_time_info()
         super().save(*args, **kwargs)

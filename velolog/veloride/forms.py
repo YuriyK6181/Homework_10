@@ -1,4 +1,6 @@
-from django.contrib.auth.forms import AuthenticationForm as AuthenticationFormGeneric
+"""
+Some docstring
+"""
 from django.forms import ModelForm
 from django.forms import Widget
 from .models import Bike, BikeRide
@@ -9,28 +11,14 @@ WIDGET_CLASS_FOR_TYPE = {"BooleanField": "checkbox", "TextField": "textarea", "D
 WIDGET_FORMAT_FOR_TYPE = {"DateField": "d.m.Y", "DateTimeField": "d.m.Y H:i:s", "TimeField": "H:i:s"}
 
 
-class AuthenticationForm(AuthenticationFormGeneric):
-    """
-    Some docstring
-    """
-
-    def __init__(self, *args, **kwargs):
-        """
-        Some docstring
-        """
-        super().__init__(*args, **kwargs)
-
-        for name, field in self.fields.items():
-            # print(name, field, field.widget)
-            widget: Widget = field.widget
-            widget.attrs["class"] = "form-control"
-
-
 class BikeCreateForm(ModelForm):
     """
     Some docstring
     """
     class Meta:
+        """
+        Some docstring
+        """
         model = Bike
         fields = ("manufacturer", "model_name", "model_year",
                   "bike_class", "bike_type",
@@ -42,7 +30,7 @@ class BikeCreateForm(ModelForm):
         Some docstring
         """
         super().__init__(*args, **kwargs)
-        for name, field in self.fields.items():
+        for field in self.fields.items():
             # print(name, field, field.widget)
             widget: Widget = field.widget
 
@@ -57,6 +45,9 @@ class BikeUpdateForm(ModelForm):
     Some docstring
     """
     class Meta:
+        """
+        Some docstring
+        """
         model = Bike
         fields = ("manufacturer", "model_name", "model_year",
                   "bike_class", "bike_type",
@@ -83,6 +74,9 @@ class BikeRideCreateForm(ModelForm):
     Some docstring
     """
     class Meta:
+        """
+        Some docstring
+        """
         model = BikeRide
         fields = ("name", "description", "route", "ride_bike", "ride_type",
                   "ride_planned", "ride_was_with_me",
@@ -97,7 +91,7 @@ class BikeRideCreateForm(ModelForm):
         Some docstring
         """
         super().__init__(*args, **kwargs)
-        for name, field in self.fields.items():
+        for field in self.fields.items():
             # print(name, field, field.widget)
             widget: Widget = field.widget
 
@@ -112,6 +106,9 @@ class BikeRideUpdateForm(ModelForm):
     Some docstring
     """
     class Meta:
+        """
+        Some docstring
+        """
         model = BikeRide
         fields = ("name", "description", "route", "ride_bike", "ride_type",
                   "ride_planned", "ride_was_with_me",
@@ -126,7 +123,7 @@ class BikeRideUpdateForm(ModelForm):
         Some docstring
         """
         super().__init__(*args, **kwargs)
-        for name, field in self.fields.items():
+        for field in self.fields.items():
             # print(name, field, field.widget)
             widget: Widget = field.widget
 

@@ -10,10 +10,10 @@ from django.contrib.auth.models import AbstractUser
 from myauth.models import UserModel
 
 
-"""
-Some docstring
-"""
 class LoginTestCase(TestCase):
+    """
+    Some docstring
+    """
     url = reverse_lazy("myauth:login")
     secret_url = reverse_lazy("myauth:hidden")
 
