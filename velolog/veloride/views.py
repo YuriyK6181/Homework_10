@@ -1,8 +1,6 @@
 
 from django.urls import reverse_lazy, reverse
-from django.views.generic import ListView, DetailView, DeleteView, CreateView, UpdateView, TemplateView
-from django.http import HttpRequest
-from django.shortcuts import render, HttpResponse, get_object_or_404
+from django.views.generic import ListView, DetailView, DeleteView, CreateView, UpdateView
 from .models import Bike, BikeRide
 from .forms import (BikeCreateForm, BikeUpdateForm,
                     BikeRideCreateForm, BikeRideUpdateForm,
@@ -12,6 +10,9 @@ from django.http import HttpResponseRedirect
 
 
 class BikesListView(ListView):
+    """
+    Some docstring
+    """
     template_name = "veloride/index.html"
     context_object_name = "veloride"
     queryset = (
@@ -26,6 +27,9 @@ class BikesListView(ListView):
 
 
 class BikeDetailView(DetailView):
+    """
+    Some docstring
+    """
     template_name = "veloride/details.html"
     context_object_name = "bike"
     queryset = (
@@ -40,14 +44,23 @@ class BikeDetailView(DetailView):
 
 
 class BikeCreateView(CreateView):
+    """
+    Some docstring
+    """
     model = Bike
     form_class = BikeCreateForm
 
     def get_success_url(self):
+        """
+        Some docstring
+        """
         return reverse("veloride:index")
 
 
 class BikeUpdateView(UpdateView):
+    """
+    Some docstring
+    """
     model = Bike
     form_class = BikeUpdateForm
     template_name = 'veloride/bike_update_form.html'
@@ -55,11 +68,17 @@ class BikeUpdateView(UpdateView):
 
 
 class BikeDeleteView(DeleteView):
+    """
+    Some docstring
+    """
     model = Bike
     success_url = reverse_lazy("veloride:index")
     context_object_name = "bike"
 
     def form_valid(self, form):
+        """
+        Some docstring
+        """
         success_url = self.get_success_url()
         self.object.archived = True
         self.object.save()
@@ -67,6 +86,9 @@ class BikeDeleteView(DeleteView):
 
 
 class BikeRidesListView(ListView):
+    """
+    Some docstring
+    """
     template_name = "veloride/bikerides_list.html"
     context_object_name = "bikerides"
 
@@ -81,9 +103,12 @@ class BikeRidesListView(ListView):
 
 
 class BikeRideDetailView(DetailView):
+    """
+    Some docstring
+    """
     template_name = "veloride/bikeride_details.html"
     context_object_name = "bikeride"
-    #ride_id = str(BikeRide.pk)
+    # ride_id = str(BikeRide.pk)
     queryset = (
         BikeRide
         .objects
@@ -93,30 +118,45 @@ class BikeRideDetailView(DetailView):
 
 
 class BikeRideCreateView(CreateView):
+    """
+    Some docstring
+    """
     model = BikeRide
     form_class = BikeRideCreateForm
 
     def get_success_url(self):
+        """
+        Some docstring
+        """
         return reverse("veloride:bikerides")
 
 
 class BikeRideUpdateView(UpdateView):
+    """
+    Some docstring
+    """
     model = BikeRide
     form_class = BikeRideUpdateForm
 
     def get_success_url(self):
+        """
+        Some docstring
+        """
         return reverse("veloride:bikerides")
 
 
 class BikeRideDeleteView(DeleteView):
+    """
+    Some docstring
+    """
     model = BikeRide
     success_url = reverse_lazy("veloride:bikerides")
     context_object_name = "bikeride"
 
     def form_valid(self, form):
+        """
+        Some docstring
+        """
         success_url = self.get_success_url()
         self.object.delete()
         return HttpResponseRedirect(success_url)
-
-
-

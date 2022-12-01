@@ -1,8 +1,10 @@
+"""
+Some docstring
+"""
 from django.urls import path
-
 from .views import MyProfileView, LoginView, LogoutView, top_secret_info_view
 
-app_name = "myauth"
+APP_NAME = "myauth"
 
 urlpatterns = [
     path("secret/", top_secret_info_view, name="hidden"),

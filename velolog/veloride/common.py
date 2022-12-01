@@ -1,22 +1,33 @@
-from datetime import datetime
-import os
-
+"""
+Some docstring
+"""
 DAYS_IN_MONTHS = (31, 28, 31, 30, 31, 30, 31, 31, 30, 30, 30, 31)
 
+
 def is_leap_year(y) -> bool:
+    """
+    Some docstring
+    """
     return abs(y - 2020) % 4 == 0
 
 
-def del_str_zero(str) -> str:
-    if str:
-        if str[0] == '0':
-            return str[1]
+def del_str_zero(str_) -> str:
+    """
+    Some docstring
+    """
+    if str_:
+        if str_[0] == '0':
+            return str_[1]
         else:
-            return str
+            return str_
     else:
-        return str
+        return str_
+
 
 class DecodeDMYHM:
+    """
+    Some docstring
+    """
     d: int
     m: int
     y: int
@@ -31,10 +42,13 @@ class DecodeDMYHM:
         self.mi = 0
 
     def __str__(self):
-        return str(self.d) + '.' + str(self.m) + '.' + str(self.y) + ' ' + str(self.h)  + ':' + str(self.mi)
+        return str(self.d) + '.' + str(self.m) + '.' + str(self.y) + ' ' + str(self.h) + ':' + str(self.mi)
 
 
 def calc_orig_price(price, discount: int = 0) -> float:
+    """
+    Some docstring
+    """
     if price:
         if not discount:
             discount = 0
@@ -43,7 +57,11 @@ def calc_orig_price(price, discount: int = 0) -> float:
     else:
         return 0
 
+
 class Dt_HM:
+    """
+    Some docstring
+    """
     h: int
     m: int
 
@@ -52,13 +70,17 @@ class Dt_HM:
         self.m = 0
 
     def __str__(self):
-        return str(self.h)  + ':' + str(self.m)
+        return str(self.h) + ':' + str(self.m)
+
 
 def decode_dt(dt) -> DecodeDMYHM:
+    """
+    Some docstring
+    """
     s: str = '{0:%d}_{0:%m}_{0:%Y}_{0:%H}_{0:%M}'.format(dt)
-    #print(s)
+    # print(s)
     sep = s.split("_")
-    #print(str(sep))
+    # print(str(sep))
     res = DecodeDMYHM()
     res.d = int(del_str_zero(sep[0]))
     res.m = int(del_str_zero(sep[1]))
@@ -67,12 +89,20 @@ def decode_dt(dt) -> DecodeDMYHM:
     res.mi = int(del_str_zero(sep[4]))
     return res
 
+
 def date_to_str_dmy(dt) -> str:
+    """
+    Some docstring
+    """
     s: str = '{0:%d}_{0:%m}_{0:%Y}_{0:%H}_{0:%M}'.format(dt)
     sep = s.split("_")
     return sep[0] + "." + sep[1] + "." + sep[2]
 
-def calc_diff_dt_in_HM(beg_dt, end_dt) -> Dt_HM:
+
+def calc_diff_dt_in_hm(beg_dt, end_dt) -> Dt_HM:
+    """
+    Some docstring
+    """
     bt = decode_dt(beg_dt)
     et = decode_dt(end_dt)
     if is_leap_year(et.y):
@@ -101,7 +131,7 @@ def calc_diff_dt_in_HM(beg_dt, end_dt) -> Dt_HM:
         h_dif = 24 + h_dif
 
     if mi_dif < 0:
-        h_dif = h_dif -1
+        h_dif = h_dif - 1
         mi_dif = 60 + mi_dif
 
     if m_dif == 0:
@@ -109,10 +139,10 @@ def calc_diff_dt_in_HM(beg_dt, end_dt) -> Dt_HM:
 
     print("d_count=", str(d_count))
 
-    print("y_dif=", str(y_dif), "m_dif=", str(m_dif), "d_dif=", str(d_dif), "h_dif=", str(h_dif), "mi_dif=", str(mi_dif))
+    print("y_dif=", str(y_dif), "m_dif=", str(m_dif), "d_dif=", str(d_dif), "h_dif=",
+          str(h_dif), "mi_dif=", str(mi_dif))
     res = Dt_HM()
     res.h = d_dif*24 + h_dif
     res.m = mi_dif
     print("res h=", str(res.h), "m=", str(res.m))
     return res
-

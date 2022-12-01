@@ -1,4 +1,6 @@
-
+"""
+Some docstring
+"""
 from django.urls import path
 from .views import (
     BikesListView,
@@ -14,7 +16,7 @@ from .views import (
     BikeRideDeleteView,
 )
 
-app_name = "veloride"
+APP_NAME = "veloride"
 
 urlpatterns = [
     path("", BikesListView.as_view(), name="index"),

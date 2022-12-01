@@ -1,10 +1,18 @@
+"""
+Module docstring
+"""
 from django.contrib.auth.forms import AuthenticationForm as AuthenticationFormGeneric
 from django.forms import Widget
 
-
+"""
+Class docstring
+"""
 class AuthenticationForm(AuthenticationFormGeneric):
 
     def __init__(self, *args, **kwargs):
+        """
+        Some docstring
+        """
         super().__init__(*args, **kwargs)
 
         for name, field in self.fields.items():

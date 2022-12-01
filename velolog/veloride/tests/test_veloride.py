@@ -1,3 +1,6 @@
+"""
+Some docstring
+"""
 from http import HTTPStatus
 from django.test import TestCase
 from django.urls import reverse
@@ -5,6 +8,9 @@ from veloride.models import Bike
 
 
 class BikesListTestCase(TestCase):
+    """
+    Some docstring
+    """
     fixtures = [
         "bike_classes.fixture.json",
         "bike_types.fixture.json",
@@ -13,6 +19,9 @@ class BikesListTestCase(TestCase):
     ]
 
     def test_veloride(self):
+        """
+        Some docstring
+        """
 
         url = reverse("veloride:index")
         response = self.client.get(url)
@@ -36,4 +45,3 @@ class BikesListTestCase(TestCase):
         self.assertEqual(len(bikes), len(bikes_in_context))
         for a1, a2 in zip(bikes, bikes_in_context):
             self.assertEqual(a1.pk, a2.pk)
-
