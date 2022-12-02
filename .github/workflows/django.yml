@@ -22,4 +22,5 @@ jobs:
         pip install -r requirements-dev.txt
     - name: Run Tests
       run: |
+        pethon velolog/manage.py runserver
         python velolog/manage.py test
