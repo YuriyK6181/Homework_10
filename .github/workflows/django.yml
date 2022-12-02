@@ -22,5 +22,4 @@ jobs:
         pip install -r requirements-dev.txt
     - name: Run Tests
       run: |
-        python velolog/manage.py startapp veloride
         python velolog/manage.py test veloride
